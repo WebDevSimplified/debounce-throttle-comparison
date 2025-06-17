@@ -1,0 +1,80 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #1a1a1a;
+}
+
+.visualizer-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.visualizer {
+  --duration: 10;
+
+  position: relative;
+  height: 65px;
+  border: 1px solid hsla(200, 100%, 50%, 0.5);
+  background: hsla(200, 100%, 50%, 0.15);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+.visualizer::before {
+  content: attr(data-name);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 5px;
+}
+
+.visualizer__time {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: hsla(200, 100%, 50%, 0.5);
+  animation: pan calc(var(--duration) * 1s) linear;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 0.75em;
+}
+
+.visualizer__event {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pan calc(var(--duration) * 1s) linear;
+  border: 1px solid hsla(200, 100%, 50%);
+}
+
+.visualizer__event[data-status="waiting"] {
+  background: hsla(200, 100%, 50%, 0.25);
+}
+
+.visualizer__event[data-status="active"] {
+  border-color: white;
+  background: hsla(200, 100%, 50%);
+}
+
+.visualizer__event[data-status="skipped"] {
+  background: hsla(0, 100%, 50%, 0.25);
+  border-color: hsla(0, 100%, 50%);
+}
+
+@keyframes pan {
+  from {
+    right: 0;
+  }
+  to {
+    right: 100%;
+  }
+}
