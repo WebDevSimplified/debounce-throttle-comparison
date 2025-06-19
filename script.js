@@ -6,10 +6,10 @@ const normalText = document.querySelector("[data-normal]")
 const debounceText = document.querySelector("[data-debounce]")
 const throttleText = document.querySelector("[data-throttle]")
 
-const visualizer = new Visualizer(1000, { throttleMethod: "queue" })
+const visualizer = new Visualizer(1000, { throttleMethod: "basic" })
 
-document.addEventListener("mousemove", () => {
-  // visualizer.addEvent()
+document.addEventListener("click", () => {
+  visualizer.addEvent()
   incrementText(normalText)
   debounceIncrement(debounceText)
   throttleIncrement(throttleText)
